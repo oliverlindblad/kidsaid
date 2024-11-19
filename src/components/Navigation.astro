@@ -2,8 +2,37 @@
 
 ---
 
-<nav>
-    <a href="/#">Hjem</a>
-    <a href="/#">Om os</a>
-    <a href="/#">I don't know</a>
-</nav>
+<article>
+ <div class="progress-container">
+            <div class="progress-bar" id="myBar"></div>
+        </div>
+</article>
+<style>
+    /* The progress container (grey background) */
+.progress-container {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0);
+  position: fixed;
+  z-index: 1000;
+}
+
+/* The progress bar (scroll indicator) */
+.progress-bar {
+  height: 8px;
+  background: #14B82A;
+  width: 0%;
+}
+</style>
+<script>
+    window.addEventListener("scroll", onScroll);
+
+function onScroll() {
+  let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  let scrolled = (winScroll / height) * 100;
+  document.getElementById("myBar").style.width = scrolled + "%";
+}
+console.log(scroll);
+
+</script>

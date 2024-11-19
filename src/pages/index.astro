@@ -1,6 +1,13 @@
 ---
+import Section1 from "../components/Section1.astro";
+import Section2 from "../components/Section2.astro";
 import Card from "../components/Card.astro";
 import Navigation from "../components/Navigation.astro";
+import Footer from "../components/Footer.astro";
+import Cta from "../components/Cta.astro";
+import Video from "../components/Video.astro";
+import "../pages/styles/global.css";
+
 ---
 
 <html lang="en">
@@ -9,25 +16,29 @@ import Navigation from "../components/Navigation.astro";
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>DEN MAGISKE TID</title>
 	</head>
 	<body>
-		<Navigation />
-		<h1>Astro</h1>
-		<main>
-<Card header="Hej Verden">
-	<img src="/meme1.webp" alt="Et meme" /> 
-	<button>Klik her</button>
-</Card>
+<main>
+     <Navigation></Navigation>
+        <h1 class="title">
+            DEN MAGISKE TID
+        </h1>
+        <div class="scroll-icon"></div>
+		
+			<Section1></Section1>
+			<Cta></Cta>
+			<Card></Card>
+			<Video></Video>
+			<Section2></Section2>
+			<Footer></Footer>
 
-<Card header="Hej Verden">
-	<button>Klik her</button>
-	<img src="/meme2.webp" alt="Et meme" /> 
-</Card>
 
-<Card test="noget" header="Hej Bert" text="lorem ipsum dollar" />
-<Card test="noget" header="Hej Andreas" text="lorem ipsum dollar" />
-	
 		</main>
+		
 	</body>
+	
+	
+	
+	
 </html>

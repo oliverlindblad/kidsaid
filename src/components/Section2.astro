@@ -1,0 +1,183 @@
+---
+/*const header = Astro.props.header;
+const text = Astro.props.text; */
+
+const {header, text, test, } = Astro.props;
+---
+
+
+
+<article>
+  <div class="n-scrollytelling n-scrollytelling--fade" data-scrollytelling-transition="fade">
+            <div class="n-scrollytelling__viewport">
+                <figure data-scrollytelling-slide="4">
+                    <picture>
+                        <img src="imgs/trylle.webp?dpr=1&amp;fit=scale-down&amp;quality=highest&amp;source=next&amp;width=700"
+                            data-image-type="image" data-original-image-width="2400" data-original-image-height="1600"
+                            aria-hidden="true" alt="" class="n-scrollytelling__image">
+                    </picture>
+                </figure>
+
+
+                <figure data-scrollytelling-slide="5">
+                    <picture>
+
+                        <img src="imgs/trylle2.webp?dpr=1&amp;fit=scale-down&amp;quality=highest&amp;source=next&amp;width=700"
+                            data-image-type="image" data-original-image-width="2400" data-original-image-height="1801"
+                            aria-hidden="true" alt="" class="n-scrollytelling__image">
+                    </picture>
+                </figure>
+               
+               
+           
+            </div>
+            <p class="n-scrollytelling__text" data-scrollytelling-assosicated-slide="4">Der er tricks og balloner for de lidt mindre børn, som kan forundres og grine og få et ballondyr.For de største børn, er der kort tricks og små illusioner, der er sjove at udføre foran vennerne, når de bliver udskrevet, eller når disse kommer på besøg.</p>
+            <p class="n-scrollytelling__text" data-scrollytelling-assosicated-slide="5">Støt KidsAid <br> Hjælp syge børn med glæde og håb!</p>
+        </div>
+
+</article>
+
+<style>
+.body__copy {
+  width: 700px;
+  margin: 10px auto;
+  padding: 20px 0;
+}
+
+.n-scrollytelling {
+  position: relative;
+  z-index: 500;
+}
+
+.n-scrollytelling__viewport {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: -1;
+}
+
+.n-scrollytelling__image {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  filter: brightness(70%);
+}
+
+.n-scrollytelling__text:first-of-type {
+  margin-top: -33vh;
+}
+
+.n-scrollytelling__text:last-of-type {
+  padding-bottom: 66vh;
+  margin-bottom: 0;
+}
+
+.n-scrollytelling__text {
+  position: relative;
+  margin-bottom: 100vh;
+  max-width: 600px;
+  padding-left: 40px;
+  padding-right: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 10;
+  font-family: FinancierDisplayWeb, serif;
+  color: #fff;
+  font-size: 33px;
+  line-height: 43px;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgb(0 0 0 / 30%);
+}
+
+.n-scrollytelling--fade figure {
+  opacity: 0;
+}
+
+.n-scrollytelling--fade figure:first-of-type {
+  opacity: 1;
+}
+
+.n-scrollytelling--fade figure {
+  -webkit-transition: all 0.35s ease-in-out;
+  transition: all 0.35s ease-in-out;
+}
+</style>
+
+<script>
+  const fadeScrollyBlocks = document.querySelectorAll('[data-scrollytelling-transition="fade"]');
+
+class FadeScrollyBlock {
+  constructor(scrollytellingElement) {
+    this.parent = scrollytellingElement;
+    this.slides = scrollytellingElement.querySelectorAll("[data-scrollytelling-slide]");
+    this.text = scrollytellingElement.querySelectorAll("[data-scrollytelling-assosicated-slide]");
+    this.slideInFocus = scrollytellingElement.querySelector("[data-scrollytelling-slide]").dataset.scrollytellingSlide;
+    this.nextSlide = this.slideInFocus.nextSibling;
+    this.previousSlide = null;
+  }
+
+  groupTextAndSlides() {
+    const groupings = {};
+
+    this.slides.forEach((slide) => {
+      const slideId = slide.dataset.scrollytellingSlide;
+      const assosiciatedText = Array.from(this.text).filter((text) => text.dataset.scrollytellingAssosicatedSlide === slideId);
+
+      groupings[slideId] = assosiciatedText;
+    });
+
+    return groupings;
+  }
+
+  setUpAnimationTriggers() {
+    Object.entries(this.groupedSlidesAndText).forEach((item) => {});
+  }
+
+  init() {
+    this.groupedSlidesAndText = this.groupTextAndSlides();
+
+    this.setUpAnimationTriggers();
+  }
+
+  observers() {
+    let observer = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          const isIntersecting = entry.isIntersecting;
+
+          if (isIntersecting) {
+            const assosicatedSlideNumber = entry.target.dataset.scrollytellingAssosicatedSlide;
+
+            const assosicatedSlide = Array.from(this.slides).find((slide) => slide.dataset.scrollytellingSlide === assosicatedSlideNumber);
+
+            if (this.slideInFocus !== assosicatedSlideNumber) {
+              console.log(this.slideInFocus, assosicatedSlideNumber);
+              const inFocusSlideElement = Array.from(this.slides).find((slide) => slide.dataset.scrollytellingSlide === this.slideInFocus);
+
+              inFocusSlideElement.style.opacity = 0;
+              assosicatedSlide.style.opacity = 1;
+
+              this.slideInFocus = assosicatedSlideNumber;
+            }
+          }
+        });
+      },
+      { rootMargin: "-20px 0px -20px 0px" }
+    );
+
+    this.text.forEach((text) => observer.observe(text));
+  }
+}
+
+fadeScrollyBlocks.forEach((block) => {
+  const fadeBlock = new FadeScrollyBlock(block);
+
+  fadeBlock.observers();
+  fadeBlock.init();
+});
+
+</script>

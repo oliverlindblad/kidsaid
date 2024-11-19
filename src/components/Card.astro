@@ -8,12 +8,123 @@ const {header, text, test} = Astro.props;
 
 
 <article>
-    <h2>
-        {header} 
-    </h2>
-    <p>{text}</p>
-    <slot />
-    <button>{test}</button>
+    <div class="card">
+        <div class="box1">
+        <h2>
+            En magisk oplevelse i svære tider!
+        </h2>
+<p>
+“Jeg kan ikke beskrive, hvor meget det betød for os, at du kom til hospitalet for at underholde vores børn. Mit barn, der har været syg i lang tid, var helt opslugt af din tryllekunst.<br> Du bragte smil og latter ind i et ellers trist rum, og jeg er stadig i chok over, hvor talentfuld du er. Tak for at gøre en svær dag lidt lysere! 🌟❤️”
+</p>
+        </div>
+        <div class="box">
+<img src="imgs/firefly2.webp" alt="firefly">
+</div>
+    </div>
+
+
+     <div class="card2">
+         <div class="box2">
+<img src="imgs/hat.webp" alt="firefly">
+</div>
+
+        <div class="box3">
+        <h2>
+            Tårer af glæde!
+        </h2>
+<p>
+“Jeg vil gerne takke dig for din fantastiske optræden på hospitalet. Mit barn har været så ked af det og syg i flere uger, men da du trådte ind, lyste hele rummet op. Din evne til at underholde og få børnene til at grine var simpelthen magisk. Det var en uforglemmelig oplevelse, og vi håber virkelig at se dig igen! 🤩🎩”
+</p>
+        </div>
+    </div>
+<div class="card">
+        <div class="box1">
+        <h2>
+            En lysglimt i mørket!
+        </h2>
+<p>
+“Jeg er stadig rørt over, hvor meget glæde du bragte til vores barn under dit besøg på hospitalet. Din tryllekunst og humor fik mit barn til at glemme sine smerter for en stund, og det var en gave, vi aldrig vil glemme. Du har en helt særlig evne til at skabe glæde, selv i svære tider. Tusind tak for at bringe magi ind i vores liv! 🎉💖”</p>
+        </div>
+        <div class="box">
+<img src="imgs/hat2.webp" alt="firefly">
+</div>
+    </div>
+
+    
 </article>
 
-<style></style>
+<style>
+.card {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding-right: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+h2, p {
+padding-top: 40px;
+  padding-left: 40px;
+  padding-right: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 10;
+  font-family: FinancierDisplayWeb, serif;
+  color: #fff;
+  line-height: 35px;
+}
+img {
+    max-width: 100%; /* Ensures the image doesn't exceed its container's width */
+    height: auto; /* Maintains the aspect ratio of the image */
+   object-fit: contain; /* Ensures the image fits within its container */
+    border-radius: 65px; /* Makes the image completely round */
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 40px;
+    padding-right: 40px;  
+  
+}
+.box {
+   
+border: 1px; /* Add a border around the box */
+  padding-top: 10px;
+  background-color: #0693E3;
+  border-radius: 0px; /* Optional: Rounded corners */
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+.box1 {
+   
+border: 1px; /* Add a border around the box */
+  padding-top: 10px;
+  background-color: #0693E3;
+  border-radius: 0px; /* Optional: Rounded corners */
+
+}
+
+.card2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+.box2 {
+    grid-column: 2; /* Place in the right column */
+    border: 1px; /* Add a border around the box */
+  padding-top: 10px;
+  background-color: #0693E3;
+  border-radius: 0px; /* Optional: Rounded corners */
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+.box3 {
+    border: 1px; /* Add a border around the box */
+  padding-top: 10px;
+  background-color: #0693E3;
+  
+}
+
+
+
+
+</style>
