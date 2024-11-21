@@ -9,6 +9,7 @@
   top: 38%; /* Center vertically */
   left: 50%; /* Center horizontally */
   transform: translate(-50%, -50%); /* Adjust for element's own dimensions */
+  font-family: "Skia", sans-serif;
   text-align: center;
   font-size: 70px;
   color: #fff;
@@ -57,4 +58,17 @@
     opacity: 0;
     top: 70px;
   }
+}
+
+.logo {
+  position: absolute; /* Keeps the logo fixed in place */
+  top: 0; /* Aligns to the top */
+  left: 0; /* Aligns to the left */
+  margin: 10px; /* Optional: Adds spacing from the edges */
+  z-index: 5000; /* Ensures it stays above other content */
+}
+
+.logo img {
+  width: 100px; /* Adjust size as needed */
+  height: auto; /* Maintains aspect ratio */
 }
